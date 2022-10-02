@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <!-- 
+      This is the main Handlebars template for the site 
+      - When the user visits the homepage or submits a color the app calls the endpoints in server.js
+      - The server script passes data in here and the Handlebars code builds it into the HTML page
+    -->
+    
+    <meta charset="utf-8" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{seo.title}}</title>
+    
+    <!-- Meta tags for SEO and social sharing -->
+    <link rel="canonical" href="{{seo.url}}">
+    <meta name="description" content="{{seo.description}}">
+    <meta property="og:title" content="{{seo.title}}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{seo.url}}">
+    <meta property="og:description" content="{{seo.description}}">
+    <meta property="og:image" content="{{seo.image}}">
+    <meta name="twitter:card" content="summary">
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />    
+    <link rel="stylesheet" media="all" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
+
+    <!-- This is a handlebars IF statement
+         Checking for a custom "color" parameter from server.js -->
+    {{#if color}} 
+    <!-- If there is a color value, update the style for the page title -->
+    <style>
+      .title {
+        color: {{color}};
+      }
+    </style>
+    {{/if}}    
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content" role="main">
+        
+        <!-- This is the start of content for our page -->
+        <h1 class="title">co:here demo</h1>
+        
+            <div id="form-container" class="container">
+                <div class="row">
+                  <div class="col-xs-4">
+                    <img id="mailLogo" class="img-rounded" src="https://cdn.glitch.global/fde194a6-a467-473a-897a-1decf1d6a7b1/cohere-mail.png?v=1664633546445"/>
+                  </div>
+                  <form id="mailForm">
+                    <div class="col-xs-8">
+                      <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input class="form-control" id="subject" name="subject" type="text" placeholder="Mail Subject" required/>
+                      </div>
+                      <div class="form-group">
+                        <label for="body">Body</label>
+                        <textarea class="form-control" id="body"  name="body" rows="5" cols="50" placeholder="Mail Body" required></textarea>
+                      </div>
+                    </div>
+                    <div class="col-xs-8">
+                      <div class="form-group">
+                        <input type="text" name="mailLabel" placeholder="Label" class="mailLabel"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <button id="mailFormBtn" class="btn btn-primary" type="button" onclick="coherePostal()">Label It!</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="row form-group">
+                  <div id="warning"></div>
+                  <label for="about">About me</label>
+                  <input name="about" type="hidden">
+                  <div id="editorContainer">
+                    <p>I classify provided mail under buckets of Now, Schedule, Delegate and Later using <b>co:here</b> Classify feature.</p>
+                  </div>
+                </div>
+          </div>
+
+        
+      </div>
+    </div>
+    <!-- The footer holds our remix button — you can use it for structure or cut it out ✂ -->
+    <footer class="footer">
+      <div class="links"></div>
+      <a
+        class="btn--remix"
+        target="_top"
+        href="https://docs.cohere.ai/classify-reference"
+      >
+        <img
+          src="https://docs.cohere.ai/img/logo-ukraine.svg"
+          style="width:50%;height:80%;"
+          alt=""
+        />
+        Classify
+      </a>
+    </footer>
+    <script src="/postal.js"></script>
+  </body>
+</html>
