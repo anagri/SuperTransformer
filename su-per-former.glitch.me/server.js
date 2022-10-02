@@ -44,7 +44,7 @@ fastify.get('/ping', function (request, reply) {
 const cohere = require('cohere-ai');
 fastify.post("/api/cohere/postal", (request, reply) => {
     var mail = request.body
-    var mail_input = "Subject: " + mail.subject + " <end> Body: " + mail.body;
+    var mail_input = mail.subject + " <body> " + mail.body.toString().replace(/\s/g, ' ');
     cohere.init(process.env.COHERE_API_KEY);
     (async () => {
       const response = await cohere.classify({
