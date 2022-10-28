@@ -1,5 +1,5 @@
-altair
-pandas
+altair==4.2.0
+pandas==1.4.3
 streamlit
-cohere
-matplotlib
+cohere==2.7.0
+matplotlib==3.5.3

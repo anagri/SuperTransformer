@@ -46,7 +46,8 @@ with form:
           st.error(f"Unknown prediction from API: {prediction}")
         else:
           st.write(f"Label: {prediction}")
-          pred_map = {c.label: c.confidence for c in response.classifications[0].confidence}
+          labels = response.classifications[0].labels
+          pred_map = {k: labels[k].confidence for k in labels.keys()}
           predictions = [pred_map[c] for c in categories]
           fig, ax = plt.subplots()
           ax.barh(y_pos, predictions, align='center')
