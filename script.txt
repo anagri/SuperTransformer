@@ -1,0 +1,144 @@
+Slide # 1 = Team Intro
+hello everyone
+
+welcome to the app demo of SuperTransformer
+
+an AI assisted email inbox manager, to make you productive, efficient and effective
+
+the team members of team Megatron are -
+Amir, that is myself
+Abhishek and Amogh
+
+=======
+
+Slide #2 = App Intro
+
+SuperTransformer allows you to intelligently categorize your emails into actionable labels, based on your feedback and training
+
+You spend less time triaging through your emails, minimal time responding to critical ones, and more time focussed on your work
+
+=======
+
+Slide #3 = Send Email to test.hillary0@gmail.com
+
+Praying to the demo gods, let me up the game a little
+
+Please send an email to test.hillary0@gmail.com
+
+You can chose one of the subject lines listed here, or from your inbox, chose a use a subject line of less confidential email
+
+Your email body can be empty, or just repeat the subject line there
+
+I'll pause for 30 secs while you do it
+
+=======
+
+Slide #4 = Eisenhower Matrix
+
+SuperTransformer utilizes productivity techniques for prioritization like Eisenhower Matrix
+
+Eisenhower Matrix categorizes tasks into Important and Urgent, and specifies action that can be taken
+
+Important and Urgent = Do it Now
+Important but not Urgent = Do Later
+Not important but Urgent = Delegate
+Not important or Urgent = Discard
+
+=======
+
+Slide #5 = Inbox Zero
+
+Inbox zero is also losely based on Eisenhower Matrix
+
+=======
+
+Slide #6 = David Allen
+
+So is David Allen's Get It Done
+
+You have single inbox, then you categorize it based on importance
+
+Many of these techniques requires you to manually triage the task for importance and urgency. We plan to solve this problem and automate it
+
+=======
+
+Slide #7: App Development Details
+
+The app demo uses persona and email data of ex-Secretary of State Hillary Clinton
+
+Clinton being the topmost executive of State Department needs to be highly efficient to be effective at her job
+
+We chose this persona because we have Clinton emails declassified and publicly available from US Govt
+
+This helps us apply our theories on real world data and produce result useful in real world scenarios
+
+We use Label Studio to annotate the Email dump into 4 priorities - Now, Later, Delegate, Discard
+
+We also label email as Ignore if data is not properly parsed
+
+We apply our own understanding of Geo-politics to label a priority for an email based on its Subject and Body
+
+We then use Cohere to train a classify model to classify into above 4 categories given an email subject and body
+
+We use Glitch to host APIs and Simple Demo UI
+
+We use Pipedream as IFTTT, it triggers when a new email arrives, queries the cohere API via Glitch and then uses GMail API to apply the predicted label
+
+=======
+
+Live Demo
+
+Now we will show you a live demo of how SuperTransformer works
+
+Here is a simulated inbox of secretary clinton, there are no priorites marked and looks cluttered
+
+Now I will manually trigger the workflow, in production it can be scheduled to run every minute
+
+Let's give it a minute to fetch all the new emails and label it based on our predictions
+
+Let's see our inbox now, we have all the emails labeled by priority
+It is less cluttered and clearly marks the priority based on our preferences
+
+
+=======
+
+Slide #8 - App Demo
+
+If you want to try it out on your own, you can use this URL
+
+DO = use the demo UI with dummy data
+
+=======
+
+Slide #11 - Challenges
+
+Some of the challenges we faced are listed here
+
+The emails were available as pdf, without any uniform strucutre, so lot of parsing misses, as well as many emails were heavily redacted
+
+We annotated 2000 emails manually, out of which we could use 1500. The remaining 500 had parsing errors so Ignored
+
+Annotated based on our own understanding of Geopolitics
+So if some issue in say Brazil, not as important as some issue in Libya or Afghanistan
+
+We only used 2 signals, subject and body, and ignored rest as it would complicate our training
+
+We had skewed categories of emails, more spammy and congratulatory, and less serious nature, as those may be discussed on IMs, WhatsApp etc.
+
+
+=======
+
+Slide #12 - Future Work
+
+Something we hope to work in future like
+
+Remove data limitations
+
+Implement user feedback system
+
+Directly train and personlize model
+
+Federated learning
+
+Support other email providers like Microsoft etc.
+
