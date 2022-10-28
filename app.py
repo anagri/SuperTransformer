@@ -1,4 +1,5 @@
 import os
+import logging
 import cohere
 from cohere.classify import Example
 
@@ -39,6 +40,7 @@ with form:
         response = co.classify(
           model=model_id,
           inputs=[input])
+        logging.info(f"Received response from cohere - {response}")
         prediction = response.classifications[0].prediction
         if not prediction or prediction not in categories:
           st.error(f"Unknown prediction from API: {prediction}")
